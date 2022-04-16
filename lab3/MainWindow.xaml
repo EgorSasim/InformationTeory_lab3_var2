@@ -1,0 +1,122 @@
+﻿<Window x:Class="lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1200">
+    <TabControl>
+        <TabItem x:Name="EncryptTab">
+            <TabItem.Header>Encript</TabItem.Header>
+            <TabItem.Content>
+                <Grid Margin="-3,0,3,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="77*"></ColumnDefinition>
+                        <ColumnDefinition Width="322*"/>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!-- Generate RANDOM PRIME NUMBER -->
+                    <Label Content="P:" Grid.Column="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="pValueTxtBox" HorizontalAlignment="Left" Grid.Column="0" Margin="34,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <Button x:Name="generatePBtn" Content="Generate" HorizontalAlignment="Left" Margin="96,13,0,0" VerticalAlignment="Top" Click="generatePBtn_Click" Height="39" Grid.Column="1"/>
+                    <Button x:Name="generatePrimeRoot" Content="Generate prime root" HorizontalAlignment="Left" Grid.Column="1" Margin="170,14,0,0" VerticalAlignment="Top" Height="63" Width="125" Click="generatePrimeRoot_Click"/>
+                    <!-- FIND PRIME ROOTS-->
+                    <Button x:Name="findPrimeRootsBtn" Content="Find prime roots" HorizontalAlignment="Left" Grid.Column="0" Margin="34,57,0,0" VerticalAlignment="Top" Width="190" Click="findPrimeRootsBtn_Click" Grid.ColumnSpan="2"/>
+                    <ListBox x:Name="primeRootsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="-1,88,10,504" SelectedIndex="0" SelectionChanged="primeRootsListBox_SelectionChanged" Grid.ColumnSpan="2"/>
+                    <!-- ROOT COUNTER -->
+                    <Label Content="Root counter: " HorizontalAlignment="Left" Grid.Column="0" Margin="1,257,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="rootCntTxtBox" HorizontalAlignment="Left" Grid.Column="1" Margin="28,261,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+                    <!-- SELECTED ROOT -->
+                    <Label Content="Choosen root(g):" HorizontalAlignment="Left" Grid.Column="0" Margin="-1,283,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="choosenRootTxtBox" HorizontalAlignment="Left" Margin="28,287,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+
+                    <!-- CLOSED KEY -->
+                    <Label Content="Closed Key(x): " HorizontalAlignment="Left" Grid.Column="0" Margin="-1,314,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.681,0.427" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="closedKeyTextBox" HorizontalAlignment="Left" Margin="28,318,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <Button x:Name="generateClosedKeyBtn" Content="Generate" HorizontalAlignment="Left" Margin="170,318,0,0" VerticalAlignment="Top" Height="18" Width="134" Click="generateClosedKeyBtn_Click" Grid.Column="1"/>
+
+                    <!-- Y -->
+                    <Label Content="Y:" HorizontalAlignment="Left" Margin="4,340,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="yTxtBox" IsEnabled="False" HorizontalAlignment="Left" Margin="28,344,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <Button x:Name="generateYBtn" Content="Generate" HorizontalAlignment="Left" Margin="170,344,0,0" VerticalAlignment="Top" Height="18" Width="134" Click="generateYBtn_Click" Grid.Column="1"/>
+
+
+                    <!-- SECRET K NUMBER-->
+                    <Label Content="Secret K:" HorizontalAlignment="Left" Grid.Column="0" Margin="0,375,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="kSecretNumTxtBox" HorizontalAlignment="Left" Grid.Column="1" Margin="28,378,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="generateKSecretNumBtn" Content="Generate" HorizontalAlignment="Left" Grid.Column="1" Margin="170,378,0,0" VerticalAlignment="Top" Width="134" Height="18" Click="generateKSecretNumBtn_Click"/>
+
+                    <!-- OPEN FILE -->
+                    <Button x:Name="openFileBtn" Grid.Column="2" Content="OPEN FILE" HorizontalAlignment="Center" VerticalAlignment="Top" Width="398" Height="88" Click="openFileBtn_Click"/>
+                    <TextBox x:Name="fileContentTxtBox" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,88,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" Height="668"/>
+
+
+                    <!-- GENERATE A AND B VALUES -->
+
+                    <Label Content="A:" HorizontalAlignment="Left" Grid.Column="0" Margin="4,419,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="aValueTxtBox" IsEnabled="False" HorizontalAlignment="Left" Margin="28,422,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+                    <Button x:Name="generateABtn" Content="Generate" HorizontalAlignment="Left" Grid.Column="1" Margin="170,422,0,0" VerticalAlignment="Top" Width="134" Height="18" Click="generateABtn_Click" />
+
+                    <Label Content="B:" HorizontalAlignment="Left" Grid.Column="0" Margin="5,456,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="bValueTxtBox" IsEnabled="False" HorizontalAlignment="Left" Margin="4,497,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="173" Height="259" Grid.ColumnSpan="2"/>
+                    <Button x:Name="generateBBtn" Content="Generate" HorizontalAlignment="Left" Grid.Column="0" Margin="43,460,0,0" VerticalAlignment="Top" Width="134" Height="18" Click="generateBBtn_Click" Grid.ColumnSpan="2" />
+
+
+                    <!-- WRITE CIPHERED TEXT -->
+                    <Button x:Name="writeToCipheredFileBtn" Content="Write to ciphered file" HorizontalAlignment="Left" Margin="140,497,0,0" VerticalAlignment="Top" Height="259" Width="182" Click="writeToCipheredFileBtn_Click" Grid.Column="1"/>
+
+                    <!-- CIPHERED FILE-->
+                    <Label Grid.Column="3" Content="CipheredText" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88" Width="199" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    <Button x:Name="saveCipheredText" Grid.Column="3" Content="Save Ciphered" HorizontalAlignment="Left" Margin="199,0,0,0" VerticalAlignment="Top" Height="93" Width="199" Click="saveCipheredText_Click"/>
+                    <TextBox x:Name="cipheredFileContentTxtBox" IsEnabled="False" Grid.Column="3" HorizontalAlignment="Center" Margin="0,93,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" Height="663"/>
+
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+
+        <TabItem x:Name="DecriptTab">
+            <TabItem.Header>Decript</TabItem.Header>
+            <TabItem.Content>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="397*"/>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
+                        <ColumnDefinition Width="398*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <!-- P -->
+                    <Label Grid.Column="1" Content="P:" HorizontalAlignment="Left" Margin="30,37,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="pDecriptValueTxtBox" Grid.Column="1" HorizontalAlignment="Left" Margin="94,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+                    <!-- X -->
+                    <Label Grid.Column="1" Content="X:" HorizontalAlignment="Left" Margin="30,68,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="xDecriptValueTxtBox" Grid.Column="1" HorizontalAlignment="Left" Margin="94,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+
+                    <!-- OPEN CIPHERED FILE -->
+                    <Button x:Name="openCipheredFileBtn" Grid.Column="1" Content="Open Ciphered File" HorizontalAlignment="Left" Margin="40,124,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.53,0.53" Width="174" Click="openCipheredFileBtn_Click"/>
+
+
+                    <!-- CIPHERED FILE CONTENT -->
+                    <TextBox x:Name="cipheredFileContentDecriptTxtBox" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Center" Margin="0,63,0,0" TextWrapping="Wrap" Text="" Width="397"/>
+
+                    <!-- DECIPHERED FILE CONTENT-->
+                    <TextBox x:Name="decipherFileContentTxtBox" Grid.Column="3" IsEnabled="False" HorizontalAlignment="Center" Margin="0,63,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="398" Height="693"/>
+
+
+                    <!-- DECRIPT BUTTON-->
+                    <Button x:Name="decriptBtn" Grid.Column="1" Content="Decript" HorizontalAlignment="Left" Margin="40,176,0,0" VerticalAlignment="Top" Width="174" Click="decriptBtn_Click"/>
+
+                    <!-- SAVE BUTTON -->
+                    <Button x:Name="saveDecriptedFileBtn" Grid.Column="1" Content="Save Decripted File" HorizontalAlignment="Left" Margin="40,233,0,0" VerticalAlignment="Top" Width="174" Click="saveDecriptedFileBtn_Click"/>
+                </Grid>
+            </TabItem.Content>
+
+        </TabItem>
+    </TabControl>
+
+
+
+</Window>
